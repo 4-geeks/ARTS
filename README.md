@@ -7,3 +7,6 @@ Run commands below to reproduce results on  dataset
 
 ```python train.py --IMAGEIN pathofimage --CSVOUTPUT pathofcsvoutput --IMAGEOUT pathofimageoutput ```
 # Inference
+run inference to obtain result
+
+```python inference.py --videoin pathofvideo --csvin pathofcsvs --dicaction dictionaryofaction ```
