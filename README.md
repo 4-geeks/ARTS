@@ -5,6 +5,8 @@ ARTS: Action Recognition using Terminal States. A complete action-recognition fr
 # simple usage
 - Training
 
+download dataset from below
+
 Run commands below to reproduce results on  dataset
 
 ```python train.py --IMAGEIN pathofimage --CSVOUTPUT pathofcsvoutput --IMAGEOUT pathofimageoutput ```
