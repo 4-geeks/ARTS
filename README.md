@@ -3,6 +3,9 @@ ARTS: Action Recognition using Terminal States. A complete action-recognition fr
 # Requirements
 ```pip install mediapipe==0.8.3```
 # simple usage
+
+![image](https://drive.google.com/uc?export=view&id=1iQaWnHDPNkafskDRiwTB08bs90oawKjo)
+
 - Training
 
 download dataset from below
