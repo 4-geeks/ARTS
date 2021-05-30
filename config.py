@@ -1,3 +1,4 @@
+
 import csv
 import numpy as np
 import os
@@ -725,9 +726,8 @@ class Observer():
               PointsScore[name] =0
         ########################
         ##########################################################################for###
-         
+          image_Ac = output_frame.copy()
           for key in self.li:
-              image_Ac = output_frame.copy()
               self.infer[key]=False
               if self.duration - self.PeriodTime[key] >second:
                   self.index[key]=0
@@ -747,7 +747,7 @@ class Observer():
                           self.infer[key]=True
           
               cv2.putText(image_Ac, 
-                        str(self.repetition[key]), 
+                        str(key+self.repetition[key]), 
                         (50, 50), 
                         self.font, 1, 
                         (0, 255, 255), 
@@ -769,6 +769,9 @@ class Observer():
     def SaveVideo(self,save=False):
         if save==True:
             for key in self.li:
+                self.img[key]=cv2.resize(self.img[key],(640,480))
+                self.img[key] = cv2.cvtColor(self.img[key], cv2.COLOR_RGB2BGR)
+
                 self.pathvideo[key].write(self.img[key])
 
         
