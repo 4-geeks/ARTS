@@ -1,4 +1,3 @@
-
 import csv
 import numpy as np
 import os
@@ -726,8 +725,9 @@ class Observer():
               PointsScore[name] =0
         ########################
         ##########################################################################for###
-          image_Ac = output_frame.copy()
+         
           for key in self.li:
+              image_Ac = output_frame.copy()
               self.infer[key]=False
               if self.duration - self.PeriodTime[key] >second:
                   self.index[key]=0
@@ -747,7 +747,7 @@ class Observer():
                           self.infer[key]=True
           
               cv2.putText(image_Ac, 
-                        str(key+self.repetition[key]), 
+                        str(self.repetition[key]), 
                         (50, 50), 
                         self.font, 1, 
                         (0, 255, 255), 
