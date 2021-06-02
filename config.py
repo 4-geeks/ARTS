@@ -680,7 +680,7 @@ class Observer():
         self.fps=fps
         self.font = cv2.FONT_HERSHEY_SIMPLEX
         self.fourcc=cv2.VideoWriter_fourcc(*'XVID')
-        self.pathvideo={key:cv2.VideoWriter(f'{self.key_instance[key]}.avi', self.fourcc, 20.0, (640,480)) for key in dic }
+        self.pathvideo={key:cv2.VideoWriter(f'RESULT.avi', self.fourcc, 20.0, (640,480)) for key in dic }
 
         ################################
     def update(self,img,second=1,th_score=6):
@@ -725,9 +725,10 @@ class Observer():
               PointsScore[name] =0
         ########################
         ##########################################################################for###
-         
-          for key in self.li:
-              image_Ac = output_frame.copy()
+          image_Ac = output_frame.copy()
+          y0, dy = 50, 4
+
+          for ii,key in enumerate(self.li):
               self.infer[key]=False
               if self.duration - self.PeriodTime[key] >second:
                   self.index[key]=0
@@ -745,11 +746,20 @@ class Observer():
                           self.trigger[key]=0
                           self.index[key]=0
                           self.infer[key]=True
-          
+              yy = 100*ii+100
+
+       
+              cv2.putText(image_Ac, 
+                        str(key), 
+                        (50, yy), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 1, 
+                        (0, 255, 255), 
+                        2, 
+                        cv2.LINE_4)
               cv2.putText(image_Ac, 
                         str(self.repetition[key]), 
-                        (50, 50), 
-                        self.font, 1, 
+                        (250, yy), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 1, 
                         (0, 255, 255), 
                         2, 
                         cv2.LINE_4)
