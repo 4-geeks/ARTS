@@ -5,6 +5,8 @@ ARTS: Action Recognition using Terminal States. A complete action-recognition fr
 ## simple usage
 
 ![image](https://drive.google.com/uc?export=view&id=1aisWCj2x9mqKEGYX28AUe2YwQ_-EOICW)
+![image](https://drive.google.com/uc?export=view&id=14jx-F_j7iGHyncxWc2Vg2a-3aCEDW_HN)
+
 - Training
 
 download dataset from below
