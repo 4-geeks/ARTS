@@ -1,3 +1,4 @@
+
 import csv
 import numpy as np
 import os
@@ -758,7 +759,7 @@ class Observer():
                         cv2.LINE_4)
               cv2.putText(image_Ac, 
                         str(self.repetition[key]), 
-                        (250, yy), 
+                        (310, yy), 
                         cv2.FONT_HERSHEY_SIMPLEX, 1, 
                         (0, 255, 255), 
                         2, 
