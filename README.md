@@ -27,3 +27,6 @@ run inference to obtain result
 
 To run tutorial GoogleColab notebook 
 
+<a href="https://colab.research.google.com/github/4-geeks/ARTS/blob/main/ARTSTUTORIAL.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
