@@ -727,6 +727,8 @@ class Observer():
         ########################
         ##########################################################################for###
           image_Ac = output_frame.copy()
+          new_size=(640,480)
+          image_Ac=cv2.resize(image_Ac,new_size)
           y0, dy = 50, 4
 
           for ii,key in enumerate(self.li):
@@ -747,20 +749,20 @@ class Observer():
                           self.trigger[key]=0
                           self.index[key]=0
                           self.infer[key]=True
-              yy = 100*ii+100
+              yy = 50*ii+50
 
        
               cv2.putText(image_Ac, 
                         str(key), 
                         (50, yy), 
-                        cv2.FONT_HERSHEY_SIMPLEX, 1, 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, 
                         (0, 255, 255), 
                         2, 
                         cv2.LINE_4)
               cv2.putText(image_Ac, 
                         str(self.repetition[key]), 
-                        (310, yy), 
-                        cv2.FONT_HERSHEY_SIMPLEX, 1, 
+                        (200, yy), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, 
                         (0, 255, 255), 
                         2, 
                         cv2.LINE_4)
