@@ -14,14 +14,16 @@ download dataset from below
 [dataset](https://drive.google.com/file/d/1mTcz4jYpScHwOwGnvBerZDzZzJhRIXGS/view
 )
 
+First in config file muse set option of train and inference
+
 Run commands below to reproduce results on  dataset
 
-```python train.py --IMAGEIN pathofimage --CSVOUTPUT pathofcsvoutput --IMAGEOUT pathofimageoutput ```
+```python train.py```
 - Inference
 
 run inference to obtain result
 
-```python inference.py --videoin pathofvideo --csvin pathofcsvs --dicaction dictionaryofaction ```
+```python inference.py ```
 
 - Tutorial
 
