@@ -1,4 +1,3 @@
-
 import csv
 import numpy as np
 import os
@@ -675,16 +674,18 @@ class Observer():
         self.key_instance={key:key for key in dic }
         self.img={key:None for key in dic }
         self.infer={key:False for key in dic }
+        self.time_s=0
         ##############################################################################
         self.duration=0
         self.f=0
         self.fps=fps
         self.font = cv2.FONT_HERSHEY_SIMPLEX
         self.fourcc=cv2.VideoWriter_fourcc(*'XVID')
-        self.pathvideo={key:cv2.VideoWriter(f'RESULT.avi', self.fourcc, 20.0, (640,480)) for key in dic }
+        self.name_video='RESULT.avi'
+        self.pathvideo={key:cv2.VideoWriter(self.name_video, self.fourcc, 20.0, (640,480)) for key in dic }
 
         ################################
-    def update(self,img,second=1,th_score=6):
+    def update(self,img,second=1,th_score=6,frame_stop_second=2):
          
           input_frame = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
           result = self.pose_tracker.process(image=input_frame)
@@ -732,6 +733,13 @@ class Observer():
           y0, dy = 50, 4
 
           for ii,key in enumerate(self.li):
+            if self.infer==True:
+                self.time_s=self.time_s+1
+                
+                frame_stop=frame_stop_second*self.fps
+                if self.time_s>frame_stop:
+                    self.infer==False
+            else:
               self.infer[key]=False
               if self.duration - self.PeriodTime[key] >second:
                   self.index[key]=0
@@ -740,6 +748,7 @@ class Observer():
               if PointsScore[self.li[key][self.index[key]]]>th_score:
                 self.index[key]=self.index[key]+1
                 self.trigger[key]=self.trigger[key]+1
+          
                 PeriodTime = self.f/self.fps
                 self.PeriodTime[key]=PeriodTime
               
@@ -776,16 +785,21 @@ class Observer():
                           print(f'action {self.key_instance[key]} number {self.repetition[key]} is occuring in {self.f} frame in {self.duration} second')
                           graph = plt.imshow(self.img[key],cmap='gray')
                           plt.show()
+                          ###
+                          self.time_s=0
        
         
         
-    def SaveVideo(self,save=False):
+    def SaveVideo(self,save=False,nn='result.mp4'):
         if save==True:
+            self.name_video=nn
             for key in self.li:
-                self.img[key]=cv2.resize(self.img[key],(640,480))
-                self.img[key] = cv2.cvtColor(self.img[key], cv2.COLOR_RGB2BGR)
+                key=key
+                
+            self.img[key]=cv2.resize(self.img[key],(640,480))
+            self.img[key] = cv2.cvtColor(self.img[key], cv2.COLOR_RGB2BGR)
 
-                self.pathvideo[key].write(self.img[key])
+            self.pathvideo[key].write(self.img[key])
 
         
         
@@ -805,3 +819,4 @@ class Observer():
         
         
         
+
