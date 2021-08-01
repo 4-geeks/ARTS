@@ -739,6 +739,11 @@ class Observer():
 ###
           for ii,key in enumerate(self.li):
             if self.ct==False:
+                ##########################################################3
+                #change
+                self.index[key]=0
+                self.trigger[key]=0
+                #######################################################
                 self.infer[key]=False
                 #self.time_s=self.time_s+1
                 
