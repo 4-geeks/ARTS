@@ -1,3 +1,5 @@
+
+
 import csv
 import numpy as np
 import os
@@ -651,7 +653,7 @@ class createcsv():
             bootstrap_helper.bootstrap(per_pose_class_limit=None)
 class Observer():
    
-    def __init__(self,pose_samples_folder,fps,dic):
+    def __init__(self,pose_samples_folder,fps,dic,name_out_video):
         self.pose_samples_folder=pose_samples_folder
         self.pose_tracker=mp_pose.Pose(upper_body_only=False)
         self.pose_embedder=FullBodyPoseEmbedder()
@@ -676,13 +678,14 @@ class Observer():
         self.infer={key:False for key in dic }
         self.time_s=0
         ##############################################################################
+        self.ct=True
         self.duration=0
         self.f=0
         self.fps=fps
+        self.name_out_video=name_out_video
         self.font = cv2.FONT_HERSHEY_SIMPLEX
         self.fourcc=cv2.VideoWriter_fourcc(*'XVID')
-        self.name_video='RESULT.avi'
-        self.pathvideo={key:cv2.VideoWriter(self.name_video, self.fourcc, 20.0, (640,480)) for key in dic }
+        self.pathvideo={key:cv2.VideoWriter(self.name_out_video, self.fourcc, 20.0, (640,480)) for key in dic }
 
         ################################
     def update(self,img,second=1,th_score=6,frame_stop_second=2):
@@ -731,14 +734,18 @@ class Observer():
           new_size=(640,480)
           image_Ac=cv2.resize(image_Ac,new_size)
           y0, dy = 50, 4
+###
 
+          self.time_s=self.time_s+1
+###
           for ii,key in enumerate(self.li):
-            if self.infer==True:
-                self.time_s=self.time_s+1
+            if self.ct==False:
+                self.infer[key]=False
+                #self.time_s=self.time_s+1
                 
                 frame_stop=frame_stop_second*self.fps
                 if self.time_s>frame_stop:
-                    self.infer==False
+                    self.ct=True
             else:
               self.infer[key]=False
               if self.duration - self.PeriodTime[key] >second:
@@ -787,12 +794,14 @@ class Observer():
                           plt.show()
                           ###
                           self.time_s=0
+                          self.ct=False
+                          
        
         
         
-    def SaveVideo(self,save=False,nn='result.mp4'):
+    def SaveVideo(self,save=False):
         if save==True:
-            self.name_video=nn
+         
             for key in self.li:
                 key=key
                 
