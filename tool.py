@@ -1,5 +1,4 @@
 
-
 import csv
 import numpy as np
 import os
@@ -760,29 +759,29 @@ class Observer():
                 self.PeriodTime[key]=PeriodTime
               
         ####################################################
-              if self.trigger[key]==len(self.li[key]):
-                          self.repetition[key]=self.repetition[key]+1
-                          self.trigger[key]=0
-                          self.index[key]=0
-                          self.infer[key]=True
-              yy = 50*ii+50
+            if self.trigger[key]==len(self.li[key]):
+                        self.repetition[key]=self.repetition[key]+1
+                        self.trigger[key]=0
+                        self.index[key]=0
+                        self.infer[key]=True
+            yy = 50*ii+50
 
-       
-              cv2.putText(image_Ac, 
-                        str(key), 
-                        (50, yy), 
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, 
-                        (0, 255, 255), 
-                        2, 
-                        cv2.LINE_4)
-              cv2.putText(image_Ac, 
-                        str(self.repetition[key]), 
-                        (200, yy), 
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, 
-                        (0, 255, 255), 
-                        2, 
-                        cv2.LINE_4)
-              self.img[key]=image_Ac
+     
+            cv2.putText(image_Ac, 
+                      str(key), 
+                      (50, yy), 
+                      cv2.FONT_HERSHEY_SIMPLEX, 0.5, 
+                      (0, 255, 255), 
+                      2, 
+                      cv2.LINE_4)
+            cv2.putText(image_Ac, 
+                      str(self.repetition[key]), 
+                      (200, yy), 
+                      cv2.FONT_HERSHEY_SIMPLEX, 0.5, 
+                      (0, 255, 255), 
+                      2, 
+                      cv2.LINE_4)
+            self.img[key]=image_Ac
    
                 
     def inference(self):
