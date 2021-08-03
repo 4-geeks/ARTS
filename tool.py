@@ -757,6 +757,20 @@ class Observer():
                   self.trigger[key]=0
               
               if PointsScore[self.li[key][self.index[key]]]>th_score:
+                  
+                #######################################################################################
+                #change
+                if self.index[key]>=1:
+                   new_name=[]
+                   for xx in self.name:
+                       new_name.append(xx)
+                   new_name.remove(self.li[key][self.index[key]])
+                   new_name.remove('.ipynb_checkpoints')
+                   for x in new_name:
+                       if PointsScore[x]>th_score:
+                           self.index[key]=0
+                           self.trigger[key]=0
+                #################################################################################
                 self.index[key]=self.index[key]+1
                 self.trigger[key]=self.trigger[key]+1
           
@@ -776,14 +790,14 @@ class Observer():
                       str(key), 
                       (50, yy), 
                       cv2.FONT_HERSHEY_SIMPLEX, 0.5, 
-                      (0, 255, 255), 
+                      (255, 0, 0), 
                       2, 
                       cv2.LINE_4)
             cv2.putText(image_Ac, 
                       str(self.repetition[key]), 
                       (200, yy), 
                       cv2.FONT_HERSHEY_SIMPLEX, 0.5, 
-                      (0, 255, 255), 
+                      (255, 0, 0), 
                       2, 
                       cv2.LINE_4)
             self.img[key]=image_Ac
@@ -813,6 +827,7 @@ class Observer():
             self.img[key] = cv2.cvtColor(self.img[key], cv2.COLOR_RGB2BGR)
 
             self.pathvideo[key].write(self.img[key])
+            return self.img[key]
 
         
         
